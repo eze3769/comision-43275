@@ -1,6 +1,7 @@
 import { Box, Tab, Tabs } from '@mui/material'
 import React from 'react'
-import SectionTelevisores from '../../pages/home/televisores';
+import SectionTelevisores from '../../containers/lista-televisores';
+import SectionFake from '../../containers/fake-section';
 
 const TabsComponent = () => {
   const [selected, setSelected] = React.useState('cells');
@@ -12,7 +13,7 @@ const TabsComponent = () => {
   const selectedSection = (value) => {
     switch (value) {
       case 'cells':
-        return <Box>Celulares</Box>;
+        return <SectionFake />;
       case 'tvs':
         return  <SectionTelevisores />;
       case 'lavarropa':

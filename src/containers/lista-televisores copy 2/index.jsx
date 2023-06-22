@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import CardItem from "../../../components/card-item";
-import { getTvs } from "./products";
+import CardItem from "../../components/card-item";
 import React from "react";
+import { listTelevisores } from "../../sdk/televisores";
 
 
 const SectionTelevisores = () => {
@@ -11,10 +11,18 @@ const SectionTelevisores = () => {
     React.useEffect(() => {
 
         setLoading(true);
-        getTvs()
+        listTelevisores()
+        .then((respuesta) => {
+          console.log(respuesta)
+          return respuesta.json()})
         .then((respuesta) => {
             console.log(respuesta);
             setItem(respuesta)
+        })
+        .catch((err) => {
+          console.error(err)
+          alert('error al cargar televisores');
+          setLoading(false)
         })
         .finally(() => {
             setLoading(false);
@@ -27,7 +35,7 @@ const SectionTelevisores = () => {
         <Box display={'flex'} justifyContent={'start'} flexDirection={'row'} gap={5}>
             {
                 loading ?
-                    <Typography>cargando...</Typography>
+                   <Typography>cargando...</Typography>
                 :
                 items?.map((item, index) => {
                     return (
