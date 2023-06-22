@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "tv1",
+        "image": "https://images.philips.com/is/image/philipsconsumer/9bf82d2f35814992a0b2afb701346516?$jpglarge$&wid=960",
+        "stock": 10,
+        "price": 150000
+    },
+    {
+        "id": 2,
+        "title": "tv2",
+        "image": "https://images.philips.com/is/image/philipsconsumer/9bf82d2f35814992a0b2afb701346516?$jpglarge$&wid=960",
+        "stock": 0,
+        "price": 850000
+    },
+    {
+        "id": 3,
+        "title": "tv3",
+        "image": "https://images.philips.com/is/image/philipsconsumer/9bf82d2f35814992a0b2afb701346516?$jpglarge$&wid=960",
+        "stock": 10,
+        "price": 550000
+    },
+    {
+        "id": 4,
+        "title": "tv4",
+        "image": "https://images.philips.com/is/image/philipsconsumer/9bf82d2f35814992a0b2afb701346516?$jpglarge$&wid=960",
+        "stock": 10,
+        "price": 350000
+    }
+]

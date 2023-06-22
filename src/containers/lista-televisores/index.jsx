@@ -39,7 +39,7 @@ const SectionTelevisores = () => {
                 :
                 items?.map((item, index) => {
                     return (
-                        <CardItem key={index + item.nombre} name={item.nombre} price={item.precio} stock={item.cantidad} imageURL={item.imageURL} />
+                        <CardItem key={index + item.title} name={item.title} price={item.price} stock={item.stock} imageURL={item.image} />
                     )
                 })
             }

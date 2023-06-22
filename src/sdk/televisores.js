@@ -1,4 +1,4 @@
 
 export const listTelevisores = () => { 
-    return fetch('../json/products.json');
+    return fetch('./assets/json/products.json');
 } 
