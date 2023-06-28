@@ -1,9 +1,8 @@
-import { Box, Typography } from "@mui/material";
-import CardItem from "../../components/card-item";
+
 import React from "react";
-import { listTelevisores } from "../../sdk/televisores";
 import ListaElementos from "../../components/lista-elementos";
 import { listFake } from "../../sdk/fakeApi";
+import Container from "../../components/container";
 
 
 const SectionFake = () => {
@@ -34,7 +33,9 @@ const SectionFake = () => {
     console.log(items);
     
     return (
-        <ListaElementos items={items} loading={loading} />
+        <Container>
+            <ListaElementos items={items} loading={loading} />
+        </Container>
     )
 }
 

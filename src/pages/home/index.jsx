@@ -1,12 +1,15 @@
 import React from 'react'
 import NavBar from '../../components/nav-bar';
-import TabsComponent from '../../components/tabs';
+// import TabsComponent from '../../components/tabs';
+import ContadorPage from '../contador';
 
 const HomePage = () => {
   return (
     <div>
         <NavBar />
-        <TabsComponent />
+        {/* <TabsComponent /> */}
+        <ContadorPage />
+
     </div>
   )
 }
