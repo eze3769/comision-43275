@@ -1,0 +1,25 @@
+import React from 'react'
+import Item from '../item-card'
+
+const ItemsList = ({ items, loading }) => {
+  return (
+    <div style={containerStyle}>
+        {
+            Boolean(loading)        ?
+                <p>cargando...</p>
+            :
+                items.map((item) => <Item data={item}  />)
+        }
+    </div>
+  )
+}
+
+export default ItemsList
+
+const containerStyle = {
+    display:'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    gap: '10px'
+}
