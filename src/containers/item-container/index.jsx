@@ -27,7 +27,6 @@ const ItemContainer = () => {
 
   const current = CATEGORIES.some(cat => cat.id === category) ? category : 'all';
 
-  console.log(category);
 
   React.useEffect(() => {
     if (!CATEGORIES.some(cat => cat.id === category)) {

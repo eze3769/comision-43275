@@ -8,7 +8,7 @@ const ItemsList = ({ items, loading }) => {
             Boolean(loading)        ?
                 <p>cargando...</p>
             :
-                items.map((item) => <Item data={item}  />)
+                items.map((item, index) => <Item key={item.title + index} data={item}  />)
         }
     </div>
   )

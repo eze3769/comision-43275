@@ -118,7 +118,7 @@ const NavBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Link to={'/cart'} style={{ textDecoration: 'none', color: '#fff' }}>
+            <Link to="/cart" style={{ textDecoration: 'none', color: '#fff' }}>
                 Cart
             </Link>
             {/* NO SE USA MAS <a></a>
