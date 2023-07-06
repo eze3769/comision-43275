@@ -43,7 +43,8 @@ const ItemContainer = () => {
         id: elemento.id,
         title: elemento.title,
         price: elemento.price,
-        image: elemento.thumbnail
+        image: elemento.thumbnail,
+        stock: elemento.available_quantity
       }))
       setItems(data);
     })

@@ -10,12 +10,15 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router-dom';
+import CartWidget from '../cart-widget';
+import { AppContext } from '../../context';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+  const { quantityCart } = React.useContext(AppContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -118,9 +121,7 @@ const NavBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Link to="/cart" style={{ textDecoration: 'none', color: '#fff' }}>
-                Cart
-            </Link>
+                <CartWidget cartQuantity={quantityCart} />
             {/* NO SE USA MAS <a></a>
             <a href={'/cart'}>Cart</a> */}
           </Box>

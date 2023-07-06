@@ -3,36 +3,48 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import ItemCount from '../item-count';
+import { AppContext } from '../../context';
 
 const Item = ({ data }) =>  {
+  const {id, title, image, stock, price} = data;
+
+  const { addProductToCarrito } = React.useContext(AppContext);
+
+  const addToCarrito = (quantity) => {
+    addProductToCarrito({
+      id: id,
+      producto: title,
+      pricePerUnit: price,
+      quantity: quantity
+    })
+  };
+
   return (
     <Card sx={{ maxWidth: 220 }}>
       <CardMedia
         component="img"
-        alt={data.title}
+        alt={title}
         height="140"
-        image={data.image}
+        image={image}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          <Link to={'/product/' + data.id}>
-          {data.title}
+          <Link to={'/product/' + id}>
+          {title}
           </Link>
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          ${data.price}
+          ${price}
+        </Typography>
+        <Typography  color="text.secondary">
+          Stock: {stock}
         </Typography>
       </CardContent>
       <CardActions>
-        <div>
-
-        <ItemCount />
-        </div>
-        <Button size="small">Add to Cart</Button>
+        <ItemCount stock={stock} addToCarrito={addToCarrito} />
       </CardActions>
     </Card>
   );
