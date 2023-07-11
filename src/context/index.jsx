@@ -11,11 +11,6 @@ const ContextProvider = ({children}) => {
     }
 
 
-    // return(
-    //     <AppContext.Provider>
-    //         {children}
-    //     </AppContext.Provider>
-    // )
     return (
         <Provider value={{ carrito, addProductToCarrito, quantityCart: carrito.length  }}>
             { children }

@@ -12,11 +12,13 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import CartWidget from '../cart-widget';
 import { AppContext } from '../../context';
+import { useNavigate } from 'react-router-dom';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [{ id: 'products', title: 'Products'}];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const navigate = useNavigate();
 
   const { quantityCart } = React.useContext(AppContext);
 
@@ -28,6 +30,11 @@ const NavBar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const handleNavigate = (id) => {
+    navigate('/' + id);
+    handleCloseNavMenu();
+  }
 
 
   return (
@@ -83,8 +90,8 @@ const NavBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.id} onClick={() => handleNavigate(page.id)}>                
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -110,21 +117,27 @@ const NavBar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
+              // <Link to={'/' + page.id}>
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.id}
+                onClick={() => handleNavigate(page.id)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.title}
               </Button>
+              // </Link>
             ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
+          {
+            quantityCart === 0 ?
+            null
+            :
+            <Box sx={{ flexGrow: 0 }}>
                 <CartWidget cartQuantity={quantityCart} />
             {/* NO SE USA MAS <a></a>
             <a href={'/cart'}>Cart</a> */}
           </Box>
+          }
         </Toolbar>
       </Container>
     </AppBar>

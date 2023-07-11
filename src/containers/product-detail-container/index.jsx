@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { getProduct } from '../../sdk/products';
 import { useParams } from 'react-router-dom';
 import ProductDetail from '../../components/product-detail';
+import { AppContext } from '../../context';
 
 
 const ProductDetailsContainer = ({image, title, description, price}) => {
   const [data, setData] = React.useState();
   const { id } = useParams();
+
+  const { addProductToCarrito } = useContext(AppContext);
 
   React.useEffect(() => {
     getProduct(id)
@@ -17,7 +20,7 @@ const ProductDetailsContainer = ({image, title, description, price}) => {
   console.log(data);
   return (
     <div>
-      <ProductDetail data={data} />
+      <ProductDetail data={data} addToCarrito={addProductToCarrito} />
     </div>
   )
 }
