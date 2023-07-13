@@ -9,7 +9,7 @@ import ItemCount from '../item-count';
 import { AppContext } from '../../context';
 
 const Item = ({ data }) =>  {
-  const {id, title, image, stock, price} = data;
+  const {id, title, imageURL, stock, price} = data;
 
   const { addProductToCarrito } = React.useContext(AppContext);
 
@@ -28,7 +28,7 @@ const Item = ({ data }) =>  {
         component="img"
         alt={title}
         height="140"
-        image={image}
+        image={imageURL}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

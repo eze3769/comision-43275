@@ -17,11 +17,11 @@ import Cart from './containers/cart';
   }, [])
   const onResize = (event) => {
 
-    const height = event.target.innerHeight;
-    const width = event.target.innerWidth;
+    // const height = event.target.innerHeight;
+    // const width = event.target.innerWidth;
 
 
-    console.info(`nueva resolucion: ${width} x ${height}`)
+    // // console.info(`nueva resolucion: ${width} x ${height}`)
   }
 
   return (

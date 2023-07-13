@@ -1,21 +1,13 @@
 import React from 'react'
 import TabsMenu from '../../components/tabs';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getProducts } from '../../sdk/products';
+// import { getProducts } from '../../sdk/products';
 import ItemsList from '../../components/items-list';
+import { getFirestore, collection, doc, getDoc, getDocs, where, query } from 'firebase/firestore';
 
-const CATEGORIES = [{id: 'all', title: 'Todos los productos'}, {id: 'cel', title: 'Celulares'}, {id: 'remeras', title: 'Remeras'}]
 
-const searchCategory = (id) => {
-  switch (id) {
-    case 'remeras':
-      return 'remeras';
-    case 'cel':
-      return 'celulares';
-    default:
-      return 'ropa'
-  }
-}
+const CATEGORIES = [{id: 'all', title: 'Todos los productos'}, {id: 'electro', title: 'Electrónica'}, {id: 'ropa', title: 'Ropa'}]
+
 
 const ItemContainer = () => {
   const [items, setItems] = React.useState([]);
@@ -34,21 +26,52 @@ const ItemContainer = () => {
     }
   }, [category, navigate])
 
+  // React.useEffect(() => {
+  //   setLoading(true);
+  //   getProducts(searchCategory(category))
+  //   .then(res => res.json())
+  //   .then(res => {
+  //     const data = res.results?.map((elemento) => ({
+  //       id: elemento.id,
+  //       title: elemento.title,
+  //       price: elemento.price,
+  //       image: elemento.thumbnail,
+  //       stock: elemento.available_quantity
+  //     }))
+  //     setItems(data);
+  //   })
+  //   .finally(() => setLoading(false))
+  // }, [category])
+
   React.useEffect(() => {
-    setLoading(true);
-    getProducts(searchCategory(category))
-    .then(res => res.json())
-    .then(res => {
-      const data = res.results?.map((elemento) => ({
-        id: elemento.id,
-        title: elemento.title,
-        price: elemento.price,
-        image: elemento.thumbnail,
-        stock: elemento.available_quantity
-      }))
-      setItems(data);
-    })
-    .finally(() => setLoading(false))
+        setLoading(true);
+
+    const db = getFirestore();
+    // const getProducts = doc(db, 'productos', '5iK7kcrrNzPfC4pXHETl')
+    const getCollection = collection(db, 'productos');
+
+
+    if (category === 'all') {
+      getDocs(getCollection)
+      .then((snapshot) => {
+        // if (snapshot.exists()) {
+          // console.log({id: snapshot.id, ...snapshot.data()});
+          setLoading(false);
+          setItems(snapshot.docs.map(el => ({id: el.id, ...el.data()})))
+          console.log(snapshot.docs.map(el => ({id: el.id, ...el.data()})));
+        // }
+      })
+    } else if (CATEGORIES.some(categories => categories.id === category) ) {
+      const q = query(getCollection, where("categoryId", '==', category))
+
+      getDocs(q)
+      .then((snapshot) => {
+        setItems(snapshot.docs.map(el => ({id: el.id, ...el.data()})))
+        setLoading(false);
+          console.log(snapshot.docs.map(el => ({id: el.id, ...el.data()})));
+      })
+    }
+    
   }, [category])
 
   return (

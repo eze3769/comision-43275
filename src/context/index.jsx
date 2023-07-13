@@ -7,6 +7,7 @@ const ContextProvider = ({children}) => {
     const [carrito, setCarrito] = React.useState([]);
 
     const addProductToCarrito = (product) => {
+        
         setCarrito([...carrito, product]);
     }
 
