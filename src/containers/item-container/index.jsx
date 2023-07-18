@@ -57,8 +57,7 @@ const ItemContainer = () => {
         // if (snapshot.exists()) {
           // console.log({id: snapshot.id, ...snapshot.data()});
           setLoading(false);
-          setItems(snapshot.docs.map(el => ({id: el.id, ...el.data()})))
-          console.log(snapshot.docs.map(el => ({id: el.id, ...el.data()})));
+          setItems(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
         // }
       })
     } else if (CATEGORIES.some(categories => categories.id === category) ) {
@@ -66,9 +65,8 @@ const ItemContainer = () => {
 
       getDocs(q)
       .then((snapshot) => {
-        setItems(snapshot.docs.map(el => ({id: el.id, ...el.data()})))
+        setItems(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
         setLoading(false);
-          console.log(snapshot.docs.map(el => ({id: el.id, ...el.data()})));
       })
     }
     

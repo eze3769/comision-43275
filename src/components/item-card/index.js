@@ -16,9 +16,10 @@ const Item = ({ data }) =>  {
   const addToCarrito = (quantity) => {
     addProductToCarrito({
       id: id,
-      producto: title,
+      title: title,
       pricePerUnit: price,
-      quantity: quantity
+      quantity: quantity,
+      imageURL: imageURL
     })
   };
 
